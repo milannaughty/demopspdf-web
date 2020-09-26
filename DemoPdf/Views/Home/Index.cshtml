@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "PSPDF Annotation Example";
+}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="~/pspdfkit/dist/pspdfkit.js"></script>
+<div class="row">
+    <!-- Element where PSPDFKit will be mounted. -->
+    <div id="pspdfkit" style="width: 100%; height: 480px;"></div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        getPdfDocument();
+    });
+
+      function base64ToArrayBuffer(base64) {
+        var binaryString = window.atob(base64); // Comment this if not using base64
+        var bytes = new Uint8Array(binaryString.length);
+        return bytes.map((byte, i) => binaryString.charCodeAt(i));
+    };
+
+    function getPdfDocument() {
+        jQuery.ajax({
+            url: '@Url.Action("GeneratePDF")',
+            type: 'POST',
+            dataType: "html",
+            traditional: true,
+            //  data: parameters,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                const arrayBuffer = base64ToArrayBuffer(data);
+                var blob = new Blob([arrayBuffer], { type: 'application/pdf' });
+
+                LoadPSPDFKit(blob);
+            },
+            error: function (data) {
+                //TODO: on fail
+            }
+        });
+    };
+
+    function LoadPSPDFKit(blob) {
+        var pspdfInstance = PSPDFKit.load({
+            allowPrinting: false,
+            container: "#pspdfkit",
+            pdf: URL.createObjectURL(blob),
+            licenseKey: getPSPDFLicenceKey()
+        }).then(function (instance) {
+                console.log("PSPDFKit loaded", instance);
+                // instance.setViewState(viewState => viewState.set("showToolbar", false))
+                instance.setViewState(function (v) {
+                    return v.set("readOnly", false);
+                });
+                instance.setViewState(function (v) {
+                    return v.set("allowPrinting", false);
+                });
+        }).catch(function (error) {
+                console.error(error);
+        });
+    }
+
+    function getAnnotations() {
+        // My code to Get Annotation and load it to PSPDF.
+    }
+
+    function saveAnnotation(annotationJSON) {
+        // I can get annotations in the PDF and which can be sent to MyAPI.
+    }
+
+    function getPSPDFLicenceKey() {
+        return "taO6GpkWnzEuC_fAfoEwJk56YcS-X5JdYWe7B3MIpU1hk8PGm8ZXdlqRVx1drxJ6F3SOvx0SMdtSO_4HLGdpoU6aAYiXhY0fLTiCLGlSkkzs7FoiWRg-WZSIAIRu_CGD1zAS-PoJFocCaMmvMqGwobxlokjwoE43xecrSyRBKYcmvnF3YW8TuQRvfSQGyyf0ClqFeUZvVoAsTZKiLtEIJzrArJSmaVz9d69qlrlDg-7Cs1NDm7AeP9n5Rn_rpTLNIkQ2u-KvYYq_5x9X3JST-IPMgJPNN9DByQKK-zNtkUqmZfXOxDV2Z3-nInIYX0VF0o7qWRvvcfKjAMRZ5lkTtDzwytySjzY_-JgzdlfgCNlVsVO7QR7h133vce4cH9Y1T3MTfQC_7spcGJi_YjLFwJWMq_rMEw95NNgkmc0rCna0CZAPCkzF_MbC2jGcrKHp";
+    }
+
+</script>

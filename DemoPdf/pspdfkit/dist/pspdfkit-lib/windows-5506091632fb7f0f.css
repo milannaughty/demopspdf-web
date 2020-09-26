@@ -1,0 +1,220 @@
+/*!
+ * PSPDFKit for Web 2019.5.1 (https://pspdfkit.com/web)
+ * 
+ * Copyright (c) 2016-2019 PSPDFKit GmbH. All rights reserved.
+ * 
+ * THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ * AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ * UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ * This notice may not be removed from this file.
+ * 
+ * PSPDFKit uses several open source third-party components: https://pspdfkit.com/acknowledgements/web/
+ */
+/* stylelint-disable plugin/pspdfkit-custom-properties-linter */
+
+/* stylelint-disable no-duplicate-selectors */
+
+:root {
+  --primary: #2d78d6;
+  --primary-dark-1: #1f5aa2;
+  --primary-dark-2: #123d70;
+  --primary-dark-3: #0b2f56;
+  --primary-light-1: #3091e2;
+  --primary-light-2: #5fafef;
+  --primary-light-3: #91c5f0;
+  --disabled: #dee5f0;
+}
+
+:root {
+  /** @PSPDFKit-define Pager **/
+  --PSPDFKit-Pager-color: var(--color-white);
+  --PSPDFKit-Pager-background: var(--primary-dark-2);
+  --PSPDFKit-Pager-input-isActive-color: var(--color-white);
+  --PSPDFKit-Pager-input-isDisabled-color: var(--disabled);
+  --PSPDFKit-Pager-input-isHovered-color: var(--color-white);
+  --PSPDFKit-Pager-input-isDisabled-opacity: 0.25;
+}
+
+:root {
+  /** @PSPDFKit-define Toolbar **/
+  --PSPDFKit-Toolbar-background: var(--primary-dark-1);
+  --PSPDFKit-Toolbar-color: var(--color-white);
+  --PSPDFKit-Toolbar-button-border: none;
+  --PSPDFKit-Toolbar-button-image-annotation: var(--primary-dark-1);
+  --PSPDFKit-Toolbar-dropdownButton-isFocused-background: var(--primary);
+  --PSPDFKit-Toolbar-dropdownButton-isFocused-color: var(--color-white);
+  --PSPDFKit-Toolbar-dropdownButton-isSelected-color: var(--primary);
+  --PSPDFKit-Toolbar-dropdownButton-isSelected-background: var(--color-white);
+}
+
+:root {
+  /* @PSPDFKit-define ToolbarButton */
+  --PSPDFKit-ToolbarButton-isFocused-background: var(--primary);
+  --PSPDFKit-ToolbarButton-dropdown-isFocused-background: var(
+    --PSPDFKit-ToolbarButton-isFocused-background
+  );
+  --PSPDFKit-ToolbarButton-dropdown-isFocused-color: var(--color-white);
+  --PSPDFKit-ToolbarButton-isActive-background: var(--color-white);
+  --PSPDFKit-ToolbarButton-isActive-color: var(--primary-dark-1);
+}
+
+:root {
+  /* @PSPDFKit-define ToolbarResponsiveGroup */
+  --PSPDFKit-ToolbarResponsiveGroup-background: var(--primary-dark-2);
+  --PSPDFKit-ToolbarResponsiveGroup-background-isHovered: var(--primary-dark-1);
+}
+
+:root {
+  /* @PSPDFKit-define Viewport */
+  --PSPDFKit-Viewport-background: #dfdfdf;
+}
+
+:root {
+  /* @PSPDFKit-define DropdownMenu */
+  --PSPDFKit-DropdownMenu-background: var(--PSPDFKit-Toolbar-background);
+  --PSPDFKit-DropdownMenu-color: var(--PSPDFKit-Toolbar-color);
+  --PSPDFKit-DropdownMenu-border: var(--primary-dark-1);
+}
+
+:root {
+  /* @PSPDFKit-define LayoutConfig */
+  --PSPDFKit-LayoutConfig-icon-isActive-color: var(--primary);
+  --PSPDFKit-LayoutConfig-icon-isActive-background: var(--color-white);
+}
+
+/* Main Toolbar */
+
+.PSPDFKit-Page-Indicator-Label,
+.PSPDFKit-Page-Indicator-Input {
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--PSPDFKit-Pager-color);
+  background: var(--PSPDFKit-Pager-background);
+}
+
+.PSPDFKit-Page-Indicator-Prev,
+.PSPDFKit-Page-Indicator-Next {
+  border-radius: 0;
+  background: var(--PSPDFKit-Pager-background);
+}
+
+.PSPDFKit-Page-Indicator-Prev:hover,
+.PSPDFKit-Page-Indicator-Next:hover {
+  background: var(--PSPDFKit-Pager-background);
+}
+
+.PSPDFKit-Page-Indicator-Prev-disabled span,
+.PSPDFKit-Page-Indicator-Next-disabled span {
+  fill: var(--disabled) !important;
+  opacity: var(--PSPDFKit-Pager-input-isDisabled-opacity);
+}
+
+.PSPDFKit-Toolbar-Button,
+.PSPDFKit-Toolbar > div,
+.PSPDFKit-Toolbar-Responsive-Group .PSPDFKit-Toolbar-Button,
+.PSPDFKit-Toolbar-Responsive-Group > div {
+  border: none;
+  color: var(--PSPDFKit-Toolbar-color);
+}
+
+.PSPDFKit-Toolbar,
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-Button,
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-DropdownGroup {
+  background: var(--PSPDFKit-Toolbar-background);
+}
+
+/* stylelint-disable selector-max-specificity */
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-Button:hover,
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-DropdownGroup:hover {
+  background: var(--PSPDFKit-ToolbarButton-isFocused-background);
+}
+
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-Button-active,
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-Button:active,
+.PSPDFKit-Toolbar .PSPDFKit-Input-Dropdown-Button-active,
+.PSPDFKit-Toolbar .PSPDFKit-Input-Dropdown-active,
+.PSPDFKit-Toolbar-Responsive-Group .PSPDFKit-Toolbar-Button-active,
+.PSPDFKit-Toolbar-Responsive-Group .PSPDFKit-Toolbar-Button:active,
+.PSPDFKit-Toolbar-Responsive-Group .PSPDFKit-Input-Dropdown-Button-active,
+.PSPDFKit-Toolbar-Responsive-Group .PSPDFKit-Input-Dropdown-active {
+  background: var(--PSPDFKit-ToolbarButton-isActive-background) !important;
+  color: var(--PSPDFKit-ToolbarButton-isActive-color);
+}
+
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-Responsive-Group .PSPDFKit-Toolbar-Button,
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-Responsive-Group .PSPDFKit-Toolbar-DropdownGroup,
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-Responsive-Group > div {
+  background: var(--PSPDFKit-ToolbarResponsiveGroup-background);
+}
+
+.PSPDFKit-Toolbar-Responsive-Group .PSPDFKit-Toolbar-Button:hover,
+.PSPDFKit-Toolbar-Responsive-Group .PSPDFKit-Toolbar-DropdownGroup:hover {
+  background: var(--PSPDFKit-ToolbarResponsiveGroup-background-isHovered);
+}
+
+.PSPDFKit-Toolbar-DropdownGroup-Button,
+.PSPDFKit-Text-Annotation-Toolbar-Alignment-left,
+.PSPDFKit-Text-Annotation-Toolbar-Alignment-right {
+  border-radius: 0 !important;
+}
+
+.PSPDFKit-Toolbar-DropdownGroup-Button,
+.PSPDFKit-Input-Slider-Value {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.PSPDFKit-Toolbar-Button-Image-Annotation {
+  border-left: var(--PSPDFKit-Toolbar-button-image-annotation);
+}
+
+/**
+ * The DropDownGroup Button normally consists of two `button` elements, however for image annotations
+ * we have a `label` and a `span` element there as well to make the input work.
+ *
+ * We reset the `:hover` behaviour for those elements and the `:hover` color above will be used for
+ * all of those elements.
+ *
+ * It was unfortunately not possible to define the `:hover` color for each of those elements separately
+ * because of the hover-transition of the background. We would end up with a transition for each
+ * of these elements separately.
+ */
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-DropdownGroup:hover button,
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-DropdownGroup:hover label,
+.PSPDFKit-Toolbar .PSPDFKit-Toolbar-DropdownGroup:hover span {
+  background: initial;
+}
+
+/* Viewport */
+
+.PSPDFKit-Viewport {
+  background: var(--PSPDFKit-Viewport-background);
+}
+
+#ToolbarButton-blend-mode {
+  display: none;
+}
+
+.PSPDFKit-Ink-Annotation-Toolbar-Blend-Mode {
+  display: none;
+}
+
+.PSPDFKit-Text-Markup-Annotation-Toolbar-Blend-Mode {
+  display: none;
+}
+
+/* WebView slider */
+
+input[type='range'] {
+  appearance: normal;
+}
+
+input[type='range']::-ms-fill-lower {
+  background: #91c5f0;
+}
+
+input[type='range']::-ms-fill-upper {
+  background: #eee;
+}
+
+input[type='range']::-ms-thumb {
+  background: #1f5aa2;
+}
